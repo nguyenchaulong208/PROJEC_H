@@ -1,0 +1,42 @@
+<Page
+    x:Class="MyShop2025.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Width="400">
+        <Border CornerRadius="12" Background="{ThemeResource CardBackgroundFillColorDefault}"
+                Padding="32" BorderBrush="{ThemeResource CardStrokeColorDefault}" BorderThickness="1">
+            <StackPanel Spacing="16">
+                <TextBlock Text="MyShop 2025" FontSize="32" FontWeight="Bold"
+                           HorizontalAlignment="Center" Foreground="{ThemeResource SystemAccentColor}"/>
+                <TextBlock Text="Phần mềm quản lý bán hàng" FontSize="14"
+                           HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondary}"/>
+
+                <Border Height="1" Background="{ThemeResource ControlStrokeColorDefault}" Margin="0,8"/>
+
+                <TextBox x:Name="UsernameTextBox" Header="Tên đăng nhập" PlaceholderText="Nhập tên đăng nhập"/>
+                <PasswordBox x:Name="PasswordBox" Header="Mật khẩu" PlaceholderText="Nhập mật khẩu"/>
+
+                <CheckBox x:Name="RememberCheckBox" Content="Ghi nhớ đăng nhập"/>
+
+                <Button x:Name="LoginButton" Content="Đăng nhập" HorizontalAlignment="Stretch"
+                        Height="40" Click="LoginButton_Click"
+                        Style="{StaticResource AccentButtonStyle}"/>
+
+                <TextBlock x:Name="ErrorTextBlock" Foreground="{ThemeResource SystemErrorTextColor}"
+                           HorizontalAlignment="Center" Visibility="Collapsed"/>
+
+                <HyperlinkButton Content="Cấu hình server..." Click="ConfigButton_Click"
+                                 HorizontalAlignment="Center"/>
+
+                <TextBlock x:Name="VersionTextBlock" FontSize="12"
+                           Foreground="{ThemeResource TextFillColorDisabled}"
+                           HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

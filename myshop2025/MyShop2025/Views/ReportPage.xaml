@@ -1,0 +1,72 @@
+<Page
+    x:Class="MyShop2025.Views.ReportPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <ScrollViewer Padding="16">
+        <StackPanel Spacing="16">
+            <TextBlock Text="Báo cáo thống kê" FontSize="28" FontWeight="Bold"/>
+
+            <Grid ColumnSpacing="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <ComboBox x:Name="PeriodCombo" Grid.Column="0" Header="Thống kê theo"
+                          SelectedIndex="0" SelectionChanged="PeriodCombo_SelectionChanged">
+                    <ComboBoxItem Content="Theo ngày"/>
+                    <ComboBoxItem Content="Theo tuần"/>
+                    <ComboBoxItem Content="Theo tháng"/>
+                    <ComboBoxItem Content="Theo năm"/>
+                </ComboBox>
+
+                <DatePicker x:Name="DateFromPicker" Grid.Column="1" Header="Từ ngày"/>
+                <DatePicker x:Name="DateToPicker" Grid.Column="2" Header="Đến ngày"/>
+                <Button Grid.Column="3" Content="Xem báo cáo" Margin="0,24,0,0"
+                        Height="36" Click="ViewReportButton_Click"/>
+            </Grid>
+
+            <Grid ColumnSpacing="16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Spacing="8">
+                    <TextBlock Text="Số lượng bán" FontSize="18" FontWeight="SemiBold"/>
+                    <Border CornerRadius="8" Background="{ThemeResource CardBackgroundFillColorDefault}"
+                            Padding="16" Height="300">
+                        <canvas:CanvasControl x:Name="SalesChart" Draw="SalesChart_Draw" Height="260"/>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Spacing="8">
+                    <TextBlock Text="Doanh thu" FontSize="18" FontWeight="SemiBold"/>
+                    <Border CornerRadius="8" Background="{ThemeResource CardBackgroundFillColorDefault}"
+                            Padding="16" Height="300">
+                        <canvas:CanvasControl x:Name="RevenueChart" Draw="RevenueChart_Draw" Height="260"/>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+            <Grid ColumnSpacing="16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Lợi nhuận" FontSize="18" FontWeight="SemiBold"/>
+                    <Border CornerRadius="8" Background="{ThemeResource CardBackgroundFillColorDefault}"
+                            Padding="16" Height="300">
+                        <canvas:CanvasControl x:Name="ProfitChart" Draw="ProfitChart_Draw" Height="260"/>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
