@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <!-- Local stub for Microsoft.WindowsAppSDK.Cpp.targets to allow building on machines without the Windows App SDK installed. -->
-  <PropertyGroup>
-	<WindowsAppSDK_Stub>true</WindowsAppSDK_Stub>
-  </PropertyGroup>
-</Project>

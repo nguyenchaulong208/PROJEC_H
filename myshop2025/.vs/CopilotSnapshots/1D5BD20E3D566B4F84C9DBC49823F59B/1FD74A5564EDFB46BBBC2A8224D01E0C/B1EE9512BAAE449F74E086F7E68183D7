@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <!-- Local stub for Microsoft.Windows.UI.Xaml.Cpp.targets to allow building on machines without the Windows XAML targets installed. -->
-  <PropertyGroup>
-	<WindowsUIXaml_Stub>true</WindowsUIXaml_Stub>
-  </PropertyGroup>
-</Project>
