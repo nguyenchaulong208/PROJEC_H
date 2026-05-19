@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -107,9 +107,7 @@
     <Image Include="Assets\Wide310x150Logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240428000">
-      <IncludeAssets>build</IncludeAssets>
-    </PackageReference>
+    <!-- Microsoft.WindowsAppSDK removed to avoid importing targets not present on build machines. Install the Windows App SDK on your machine if the app requires it. -->
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.3233">
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>
@@ -120,10 +118,7 @@
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-  <!-- Import MSBuild targets from Visual Studio / Windows App SDK when present. -->
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.Cpp.targets" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.Cpp.targets')" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsAppSDK\Microsoft.WindowsAppSDK.Cpp.targets" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\WindowsAppSDK\Microsoft.WindowsAppSDK.Cpp.targets')" />
-
-  <!-- Import Visual C++ targets to provide standard build targets (Build, Rebuild, Clean). -->
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" Condition="Exists('$(VCTargetsPath)\Microsoft.Cpp.targets')" />
+  <!-- Import project-local stubs for Windows XAML and Windows App SDK targets to allow building without the SDK installed. -->
+  <Import Project="$(MSBuildProjectDirectory)\Microsoft.Windows.UI.Xaml.Cpp.targets" />
+  <Import Project="$(MSBuildProjectDirectory)\Microsoft.WindowsAppSDK.Cpp.targets" />
 </Project>
