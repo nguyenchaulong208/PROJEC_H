@@ -1,0 +1,10 @@
+App.xbf
+MainWindow.xbf
+Views\ConfigPage.xbf
+Views\DashboardPage.xbf
+Views\LoginPage.xbf
+Views\OrdersPage.xbf
+Views\ProductsPage.xbf
+Views\ReportPage.xbf
+Views\SettingsPage.xbf
+Views\ShellPage.xbf

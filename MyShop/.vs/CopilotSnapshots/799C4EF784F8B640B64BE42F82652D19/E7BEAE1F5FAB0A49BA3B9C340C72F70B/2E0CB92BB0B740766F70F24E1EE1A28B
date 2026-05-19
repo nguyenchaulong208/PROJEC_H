@@ -1,0 +1,60 @@
+﻿<Page
+    x:Class="MyShop.Views.OrdersPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    xmlns:converters="using:MyShop.Converters">
+
+    <Page.Resources>
+        <converters:PriceFormatConverter x:Key="PriceConverter" />
+    </Page.Resources>
+
+    <Grid Padding="24" RowDefinitions="Auto,Auto,*,Auto">
+        <TextBlock Text="Quản lý đơn hàng" FontSize="28" FontWeight="Bold" />
+
+        <StackPanel Grid.Row="1" Spacing="12" Margin="0,12">
+            <Grid ColumnDefinitions="Auto,Auto,Auto,*,Auto" ColumnSpacing="8">
+                <DatePicker x:Name="FromDate" Header="Từ ngày" />
+                <DatePicker x:Name="ToDate" Grid.Column="1" Header="Đến ngày" />
+                <ComboBox x:Name="StatusFilter" Grid.Column="2" PlaceholderText="Trạng thái"
+                          MinWidth="140" Header="Trạng thái" />
+                <Button Grid.Column="4" Content="Tìm kiếm" Click="OnSearchClick" Margin="0,24,0,0" />
+            </Grid>
+            <Button Content="+ Tạo đơn hàng" Click="OnCreateOrder" Style="{StaticResource AccentButtonStyle}"
+                    HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <ListView Grid.Row="2" x:Name="OrderList" Margin="0,8"
+                  SelectionMode="Single" BorderThickness="0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="12" Margin="0,2" CornerRadius="8"
+                            Background="{ThemeResource CardBackgroundFillColorDefault}">
+                        <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto,Auto" ColumnSpacing="16">
+                            <TextBlock Text="{Binding OrderId, StringFormat='#{0}'}" FontWeight="Bold"
+                                       VerticalAlignment="Center" />
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding CreatedTime, StringFormat='dd/MM/yyyy HH:mm'}" />
+                            </StackPanel>
+                            <TextBlock Grid.Column="2" Text="{Binding FinalPrice, Converter={StaticResource PriceConverter}}"
+                                       FontWeight="SemiBold" VerticalAlignment="Center" />
+                            <TextBlock Grid.Column="3" Text="{Binding Status}" VerticalAlignment="Center"
+                                       Foreground="{ThemeResource SystemAccentColor}" />
+                            <StackPanel Grid.Column="4" Orientation="Horizontal" Spacing="4" VerticalAlignment="Center">
+                                <Button Content="Chi tiết" Click="OnViewDetail" Tag="{Binding OrderId}" />
+                                <Button Content="Sửa" Click="OnEditOrder" Tag="{Binding OrderId}" />
+                                <Button Content="Xóa" Click="OnDeleteOrder" Tag="{Binding OrderId}" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="8" Margin="0,8">
+            <Button Content="‹" Click="OnPrevPage" />
+            <TextBlock x:Name="PageInfoText" VerticalAlignment="Center" Margin="8,0" />
+            <Button Content="›" Click="OnNextPage" />
+        </StackPanel>
+    </Grid>
+</Page>

@@ -6,10 +6,10 @@
 Tạo ra ứng dụng hỗ trợ chủ cửa hàng bán hàng.
 
 ### A2. Người dùng của hệ thống
-- Hệ thống chỉ có một người dùng duy nhất là người chủ cửa hàng nhỏ.
+- Hệ thống chỉ có một người dùng duy nhất là người chủ quán ăn nhỏ.
 
 ### A3. Kiến trúc chương trình
-Chương trình có kiến trúc client–server, sử dụng database tùy chọn (demo Postgres).
+Chương trình có kiến trúc client–server, sử dụng database Postgres.
 
 ### A4. Luồng màn hình chính
 - **LoginScreen** – Màn hình đăng nhập  
@@ -164,11 +164,6 @@ Chức năng:
 
 ---
 
-## B7. Đóng gói file cài đặt (0.25 điểm)
-
-- Đóng gói thành file `.exe` để cài đặt  
-
----
 
 # C. Các chức năng tự chọn (5 điểm)
 
@@ -191,7 +186,3 @@ Chức năng:
 - Tìm kiếm nâng cao (1)  
 - Onboarding hướng dẫn sử dụng (0.5)  
 
----
-
-# D. Hướng dẫn nộp bài
-*(Không có nội dung chi tiết trong tài liệu)*

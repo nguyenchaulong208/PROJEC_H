@@ -1,0 +1,173 @@
+-- ============================================================
+-- MyShop 2025 - Script khởi tạo Database PostgreSQL
+-- ============================================================
+-- CÁCH DÙNG:
+--   Bước 1: Chạy dòng CREATE DATABASE trước (kết nối đến
+--            database 'postgres' hoặc 'template1')
+--   Bước 2: Kết nối đến database 'myshop' rồi chạy phần còn lại
+--
+--   Hoặc dùng lệnh psql:
+--     psql -U postgres -c "CREATE DATABASE myshop;"
+--     psql -U postgres -d myshop -f database/init.sql
+-- ============================================================
+
+CREATE DATABASE myshop
+    WITH ENCODING 'UTF8'
+    LC_COLLATE = 'Vietnamese_Vietnam.1258'
+    LC_CTYPE = 'Vietnamese_Vietnam.1258';
+
+-- ============================================================
+-- BẢNG
+-- ============================================================
+
+-- Loại sản phẩm
+CREATE TABLE IF NOT EXISTS category (
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT DEFAULT ''
+);
+
+-- Sản phẩm
+CREATE TABLE IF NOT EXISTS product (
+    product_id SERIAL PRIMARY KEY,
+    sku VARCHAR(100) NOT NULL UNIQUE,
+    name VARCHAR(500) NOT NULL,
+    import_price INTEGER NOT NULL DEFAULT 0,
+    sale_price INTEGER NOT NULL DEFAULT 0,
+    count INTEGER NOT NULL DEFAULT 0,
+    description TEXT DEFAULT '',
+    category_id INTEGER REFERENCES category(category_id) ON DELETE SET NULL
+);
+
+-- Hình ảnh sản phẩm
+CREATE TABLE IF NOT EXISTS product_image (
+    image_id SERIAL PRIMARY KEY,
+    product_id INTEGER NOT NULL REFERENCES product(product_id) ON DELETE CASCADE,
+    image_url TEXT NOT NULL
+);
+
+-- Đơn hàng
+CREATE TABLE IF NOT EXISTS orders (
+    order_id SERIAL PRIMARY KEY,
+    created_time TIMESTAMP NOT NULL DEFAULT NOW(),
+    final_price INTEGER NOT NULL DEFAULT 0,
+    status VARCHAR(50) NOT NULL DEFAULT 'Mới tạo'
+);
+
+-- Chi tiết đơn hàng
+CREATE TABLE IF NOT EXISTS order_item (
+    order_item_id SERIAL PRIMARY KEY,
+    quantity INTEGER NOT NULL DEFAULT 1,
+    unit_sale_price DOUBLE PRECISION NOT NULL DEFAULT 0,
+    total_price INTEGER NOT NULL DEFAULT 0,
+    order_id INTEGER NOT NULL REFERENCES orders(order_id) ON DELETE CASCADE,
+    product_id INTEGER NOT NULL REFERENCES product(product_id) ON DELETE CASCADE
+);
+
+-- Người dùng
+CREATE TABLE IF NOT EXISTS app_user (
+    user_id SERIAL PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password_hash VARCHAR(500) NOT NULL,
+    role VARCHAR(50) NOT NULL DEFAULT 'admin'
+);
+
+-- ============================================================
+-- Tài khoản mặc định: admin / admin
+-- Hash SHA256 (lowercase hex) của 'admin'
+-- ============================================================
+INSERT INTO app_user (username, password_hash, role)
+VALUES ('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin')
+ON CONFLICT (username) DO NOTHING;
+
+-- ============================================================
+-- DỮ LIỆU MẪU
+-- ============================================================
+
+-- 3 loại sản phẩm
+INSERT INTO category (name, description) VALUES
+('Đồ uống', 'Các loại đồ uống, nước giải khát'),
+('Đồ ăn nhanh', 'Các món ăn nhanh tiện lợi'),
+('Bánh ngọt', 'Các loại bánh ngọt, tráng miệng');
+
+-- 66 sản phẩm (22/loại)
+INSERT INTO product (sku, name, import_price, sale_price, count, description, category_id) VALUES
+-- Đồ uống
+('NUOC01', 'Coca Cola 330ml', 5000, 10000, 100, 'Nước ngọt có ga', 1),
+('NUOC02', 'Pepsi 330ml', 5000, 10000, 90, 'Nước ngọt có ga', 1),
+('NUOC03', 'Sting 330ml', 6000, 12000, 80, 'Nước tăng lực', 1),
+('NUOC04', 'Red Bull 250ml', 8000, 15000, 70, 'Nước tăng lực', 1),
+('NUOC05', 'Trà xanh 0 độ 500ml', 4000, 8000, 120, 'Trà xanh đóng chai', 1),
+('NUOC06', 'Nước suối Lavie 500ml', 3000, 5000, 200, 'Nước uống đóng chai', 1),
+('NUOC07', 'Bia Tiger 330ml', 8000, 15000, 60, 'Bia lon', 1),
+('NUOC08', 'Bia Heineken 330ml', 10000, 18000, 55, 'Bia lon cao cấp', 1),
+('NUOC09', 'Sữa tươi TH True Milk 220ml', 6000, 10000, 45, 'Sữa tươi tiệt trùng', 1),
+('NUOC10', 'Nước cam ép Twister 330ml', 7000, 12000, 65, 'Nước ép trái cây', 1),
+('NUOC11', 'Trà sữa Matcha 500ml', 12000, 25000, 30, 'Trà sữa đóng chai', 1),
+('NUOC12', 'Cà phê đen đá', 5000, 15000, 40, 'Cà phê truyền thống', 1),
+('NUOC13', 'Cà phê sữa đá', 6000, 18000, 35, 'Cà phê sữa', 1),
+('NUOC14', 'Nước dừa tươi', 8000, 15000, 25, 'Nước dừa đóng chai', 1),
+('NUOC15', 'Soda chanh', 4000, 10000, 50, 'Nước soda pha chanh', 1),
+('NUOC16', 'Nước ép cà rốt', 7000, 15000, 20, 'Nước ép tươi', 1),
+('NUOC17', 'Trà đào', 5000, 12000, 45, 'Trà đào đóng chai', 1),
+('NUOC18', 'Nước yến', 15000, 30000, 15, 'Nước yến cao cấp', 1),
+('NUOC19', 'Kombucha', 10000, 20000, 22, 'Trà lên men', 1),
+('NUOC20', 'Nước mía', 3000, 7000, 60, 'Nước mía đóng chai', 1),
+('NUOC21', 'Nước chanh dây', 5000, 12000, 35, 'Nước ép chanh dây', 1),
+('NUOC22', 'Cacao nóng', 8000, 20000, 18, 'Cacao hòa tan', 1),
+
+-- Đồ ăn nhanh
+('AN01', 'Pizza phô mai', 25000, 45000, 30, 'Pizza nhân phô mai', 2),
+('AN02', 'Pizza hải sản', 30000, 55000, 25, 'Pizza tôm mực', 2),
+('AN03', 'Pizza thịt nguội', 28000, 50000, 28, 'Pizza pepperoni', 2),
+('AN04', 'Hamburger bò', 15000, 30000, 40, 'Burger thịt bò', 2),
+('AN05', 'Hamburger gà', 12000, 25000, 45, 'Burger thịt gà', 2),
+('AN06', 'Khoai tây chiên', 5000, 15000, 80, 'Khoai tây chiên giòn', 2),
+('AN07', 'Gà rán (1 miếng)', 10000, 25000, 50, 'Gà rán Kentucky', 2),
+('AN08', 'Cơm tấm sườn', 12000, 30000, 35, 'Cơm tấm sườn nướng', 2),
+('AN09', 'Bún bò Huế', 15000, 35000, 25, 'Tô bún bò Huế', 2),
+('AN10', 'Phở bò tái', 15000, 40000, 30, 'Tô phở bò tái', 2),
+('AN11', 'Mì xào bò', 12000, 30000, 28, 'Mì xào thịt bò', 2),
+('AN12', 'Cơm chiên Dương Châu', 10000, 25000, 35, 'Cơm chiên hải sản', 2),
+('AN13', 'Bánh mì thịt', 5000, 15000, 60, 'Bánh mì kẹp thịt', 2),
+('AN14', 'Bánh mì chả lụa', 4000, 12000, 55, 'Bánh mì kẹp chả', 2),
+('AN15', 'Cháo lòng', 10000, 25000, 20, 'Tô cháo lòng', 2),
+('AN16', 'Bún chả Hà Nội', 15000, 35000, 22, 'Bún chả thịt nướng', 2),
+('AN17', 'Mì Quảng', 12000, 30000, 24, 'Mì Quảng gà', 2),
+('AN18', 'Hủ tiếu Nam Vang', 12000, 30000, 26, 'Hủ tiếu bò viên', 2),
+('AN19', 'Bánh xèo', 8000, 20000, 30, 'Bánh xèo tôm thịt', 2),
+('AN20', 'Nem rán (10 cái)', 10000, 25000, 20, 'Nem rán nhân thịt', 2),
+('AN21', 'Bò nướng lá lốt', 15000, 35000, 18, 'Bò nướng lá lốt', 2),
+('AN22', 'Lẩu thái hải sản', 50000, 120000, 10, 'Lẩu thái chua cay', 2),
+
+-- Bánh ngọt
+('BANH01', 'Bánh bông lan trứng muối', 15000, 35000, 25, 'Bánh bông lan phô mai', 3),
+('BANH02', 'Bánh mì bơ tỏi', 5000, 12000, 40, 'Bánh mì nướng bơ tỏi', 3),
+('BANH03', 'Bánh plan flan', 5000, 15000, 35, 'Bánh flan caramen', 3),
+('BANH04', 'Bánh tiramisu', 20000, 45000, 15, 'Bánh tiramisu Ý', 3),
+('BANH05', 'Bánh kem tươi dâu', 30000, 65000, 10, 'Bánh kem dâu tây', 3),
+('BANH06', 'Bánh su kem', 5000, 10000, 50, 'Bánh su kem tươi', 3),
+('BANH07', 'Bánh chuối nướng', 8000, 20000, 28, 'Bánh chuối nướng cốt dừa', 3),
+('BANH08', 'Bánh khoai môn', 5000, 12000, 45, 'Bánh khoai môn chiên', 3),
+('BANH09', 'Bánh tráng trộn', 5000, 10000, 60, 'Bánh tráng trộn sa tế', 3),
+('BANH10', 'Bánh gato socola', 25000, 55000, 12, 'Bánh gato socola', 3),
+('BANH11', 'Bánh mì que pate', 3000, 8000, 70, 'Bánh mì que pate', 3),
+('BANH12', 'Bánh donut', 5000, 12000, 30, 'Bánh donut đường', 3),
+('BANH13', 'Bánh bò rán mật ong', 4000, 10000, 55, 'Bánh bò rán', 3),
+('BANH14', 'Bánh trung thu thập cẩm', 20000, 45000, 10, 'Bánh trung thu', 3),
+('BANH15', 'Bánh pancake', 8000, 20000, 22, 'Bánh pancake mật ong', 3),
+('BANH16', 'Bánh waffle', 10000, 25000, 18, 'Bánh waffle trái cây', 3),
+('BANH17', 'Bánh phô mai que chiên', 5000, 12000, 35, 'Phô mai que chiên giòn', 3),
+('BANH18', 'Bánh bao chay', 3000, 8000, 40, 'Bánh bao chay', 3),
+('BANH19', 'Bánh bao thịt', 5000, 12000, 38, 'Bánh bao nhân thịt', 3),
+('BANH20', 'Bánh da lợn', 5000, 10000, 25, 'Bánh da lợn lá dứa', 3),
+('BANH21', 'Bánh cốm', 8000, 18000, 15, 'Bánh cốm Hà Nội', 3),
+('BANH22', 'Bánh tai yến', 10000, 22000, 12, 'Bánh tai yến mèo', 3)
+ON CONFLICT (sku) DO NOTHING;
+
+-- Hình ảnh mẫu
+INSERT INTO product_image (product_id, image_url) VALUES
+(1, 'Assets/Products/coca_1.jpg'), (1, 'Assets/Products/coca_2.jpg'), (1, 'Assets/Products/coca_3.jpg'),
+(2, 'Assets/Products/pepsi_1.jpg'), (2, 'Assets/Products/pepsi_2.jpg'), (2, 'Assets/Products/pepsi_3.jpg'),
+(24, 'Assets/Products/pizza_1.jpg'), (24, 'Assets/Products/pizza_2.jpg'), (24, 'Assets/Products/pizza_3.jpg'),
+(45, 'Assets/Products/banh_1.jpg'), (45, 'Assets/Products/banh_2.jpg'), (45, 'Assets/Products/banh_3.jpg');

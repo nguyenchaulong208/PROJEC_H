@@ -1,0 +1,36 @@
+﻿<Page
+    x:Class="MyShop.Views.ShellPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls">
+
+    <Grid>
+        <NavigationView x:ConnectionId='2'
+            x:Name="NavView"
+            PaneDisplayMode="LeftCompact"
+                                          
+            Header="MyShop 2025"
+                             
+                                           >
+
+            <NavigationView.MenuItems>
+                <NavigationViewItem Tag="Dashboard" Icon="Home" Content="Tổng quan" />
+                <NavigationViewItem Tag="Products" Icon="Shop" Content="Sản phẩm" />
+                <NavigationViewItem Tag="Orders" Icon="DockBottom" Content="Đơn hàng" />
+                <NavigationViewItem Tag="Report" Icon="ReportDocument" Content="Báo cáo" />
+                <NavigationViewItem Tag="Settings" Icon="Setting" Content="Cài đặt" />
+            </NavigationView.MenuItems>
+
+            <NavigationView.PaneFooter>
+                <NavigationViewItem Tag="Logout" Content="Đăng xuất">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE77B;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.PaneFooter>
+
+            <Frame x:ConnectionId='3' x:Name="ContentFrame" />
+        </NavigationView>
+    </Grid>
+</Page>
+

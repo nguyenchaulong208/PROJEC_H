@@ -1,0 +1,77 @@
+﻿<Page
+    x:Class="MyShop.Views.ProductsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    xmlns:converters="using:MyShop.Converters">
+
+    <Page.Resources>
+        <converters:PriceFormatConverter x:Key="PriceConverter" />
+        <converters:StockCountFormatConverter x:Key="StockCountConverter" />
+    </Page.Resources>
+
+    <Grid Padding="24" RowDefinitions="Auto,Auto,*,Auto">
+        <TextBlock Text="Quản lý sản phẩm" FontSize="28" FontWeight="Bold" />
+
+        <StackPanel Grid.Row="1" Spacing="12" Margin="0,12">
+            <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto,Auto" ColumnSpacing="8">
+                <ComboBox x:Name="CategoryCombo" PlaceholderText="Loại sản phẩm"
+                          MinWidth="180" SelectionChanged="OnCategoryChanged" />
+
+                <AutoSuggestBox x:Name="SearchBox" Grid.Column="1"
+                                PlaceholderText="Tìm kiếm sản phẩm..."
+                                QuerySubmitted="OnSearch" />
+
+                <NumberBox x:Name="MinPriceBox" Grid.Column="2" PlaceholderText="Giá từ"
+                           MinWidth="120" SpinButtonPlacementMode="Hidden" />
+
+                <NumberBox x:Name="MaxPriceBox" Grid.Column="3" PlaceholderText="Giá đến"
+                           MinWidth="120" SpinButtonPlacementMode="Hidden" />
+
+                <ComboBox x:Name="SortCombo" Grid.Column="4" PlaceholderText="Sắp xếp"
+                          MinWidth="140" SelectionChanged="OnSortChanged" />
+
+                <Button Grid.Column="5" Content="Tìm" Click="OnSearchClick" />
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <Button Content="+ Thêm sản phẩm" Click="OnAddProduct" Style="{StaticResource AccentButtonStyle}" />
+                <Button Content="+ Thêm loại" Click="OnAddCategory" />
+                <Button Content="Import Excel" Click="OnImport" />
+            </StackPanel>
+        </StackPanel>
+
+        <ListView Grid.Row="2" x:Name="ProductList" Margin="0,8"
+                  SelectionMode="Single" BorderThickness="0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="12" Margin="0,2" CornerRadius="8"
+                            Background="{ThemeResource CardBackgroundFillColorDefault}">
+                        <Grid ColumnDefinitions="*,Auto,Auto,Auto,Auto" ColumnSpacing="16">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}" FontWeight="SemiBold" />
+                                <TextBlock Text="{Binding Sku}" FontSize="12" Opacity="0.6" />
+                            </StackPanel>
+                            <TextBlock Grid.Column="1" Text="{Binding SalePrice, Converter={StaticResource PriceConverter}}"
+                                       VerticalAlignment="Center" FontWeight="SemiBold" />
+                            <TextBlock Grid.Column="2" VerticalAlignment="Center"
+                                       Text="{Binding Count, StringFormat='Tồn: {0}'}" />
+                            <TextBlock Grid.Column="3" VerticalAlignment="Center"
+                                       Text="{Binding CategoryName}" Opacity="0.6" />
+                            <StackPanel Grid.Column="4" Orientation="Horizontal" Spacing="4" VerticalAlignment="Center">
+                                <Button Content="Sửa" Click="OnEditProduct" Tag="{Binding ProductId}" />
+                                <Button Content="Xóa" Click="OnDeleteProduct" Tag="{Binding ProductId}" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="8" Margin="0,8">
+            <Button Content="‹" Click="OnPrevPage" />
+            <TextBlock x:Name="PageInfoText" VerticalAlignment="Center" Margin="8,0" />
+            <Button Content="›" Click="OnNextPage" />
+        </StackPanel>
+    </Grid>
+</Page>

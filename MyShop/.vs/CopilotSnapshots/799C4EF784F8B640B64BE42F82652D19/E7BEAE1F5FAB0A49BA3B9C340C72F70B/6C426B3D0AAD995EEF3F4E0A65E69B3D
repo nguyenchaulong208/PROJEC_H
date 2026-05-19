@@ -1,0 +1,18 @@
+﻿using Microsoft.UI.Xaml.Data;
+
+namespace MyShop.Converters;
+
+public class StockCountFormatConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, string language)
+    {
+        if (value is int count)
+        {
+            return $"Tồn: {count}";
+        }
+        return value;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, string language)
+        => throw new NotImplementedException();
+}

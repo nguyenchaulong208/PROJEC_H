@@ -1,0 +1,21 @@
+﻿<Page
+    x:Class="MyShop.Views.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls">
+
+    <Grid Padding="24" RowDefinitions="Auto,*">
+        <TextBlock Text="Cài đặt chương trình" FontSize="28" FontWeight="Bold" />
+
+        <StackPanel Grid.Row="1" Spacing="16" Margin="0,24" MaxWidth="500">
+            <ComboBox x:ConnectionId='2' x:Name="ItemsPerPageCombo" Header="Số sản phẩm mỗi trang"
+                      PlaceholderText="Chọn số lượng" />
+            <ComboBox x:ConnectionId='3' x:Name="LastScreenCombo" Header="Màn hình mặc định khi mở"
+                      PlaceholderText="Chọn màn hình" />
+            <Button x:ConnectionId='4' Content="Lưu cài đặt"                    
+                    Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Left" />
+            <TextBlock x:ConnectionId='5' x:Name="StatusText" Foreground="Green" Visibility="Collapsed" />
+        </StackPanel>
+    </Grid>
+</Page>
+
