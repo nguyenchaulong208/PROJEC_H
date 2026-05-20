@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "E:\\Github Code\\PROJEC_H\\MyShop\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|MyShop\\MyShop.csproj|e:\\github code\\projec_h\\myshop\\myshop\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|MyShop\\MyShop.csproj|solutionrelative:myshop\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|MyShop\\MyShop.csproj|e:\\github code\\projec_h\\myshop\\myshop\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|MyShop\\MyShop.csproj|solutionrelative:myshop\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|MyShop\\MyShop.csproj|e:\\github code\\projec_h\\myshop\\myshop\\models\\appconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|MyShop\\MyShop.csproj|solutionrelative:myshop\\models\\appconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|MyShop\\MyShop.csproj|e:\\github code\\projec_h\\myshop\\myshop\\views\\configpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|MyShop\\MyShop.csproj|solutionrelative:myshop\\views\\configpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|MyShop\\MyShop.csproj|e:\\github code\\projec_h\\myshop\\myshop\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|MyShop\\MyShop.csproj|solutionrelative:myshop\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|MyShop\\MyShop.csproj|e:\\github code\\projec_h\\myshop\\myshop\\services\\databaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,24 +38,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "E:\\Github Code\\PROJEC_H\\MyShop\\MyShop\\App.xaml.cs",
+              "RelativeDocumentMoniker": "MyShop\\App.xaml.cs",
+              "ToolTip": "E:\\Github Code\\PROJEC_H\\MyShop\\MyShop\\App.xaml.cs",
+              "RelativeToolTip": "MyShop\\App.xaml.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAA3wCwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T04:11:05.659Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "AuthService.cs",
               "DocumentMoniker": "E:\\Github Code\\PROJEC_H\\MyShop\\MyShop\\Services\\AuthService.cs",
               "RelativeDocumentMoniker": "MyShop\\Services\\AuthService.cs",
               "ToolTip": "E:\\Github Code\\PROJEC_H\\MyShop\\MyShop\\Services\\AuthService.cs",
               "RelativeToolTip": "MyShop\\Services\\AuthService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-19T20:07:31.695Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "ConfigPage.xaml.cs",
               "DocumentMoniker": "E:\\Github Code\\PROJEC_H\\MyShop\\MyShop\\Views\\ConfigPage.xaml.cs",
               "RelativeDocumentMoniker": "MyShop\\Views\\ConfigPage.xaml.cs",
@@ -59,12 +76,11 @@
               "RelativeToolTip": "MyShop\\Views\\ConfigPage.xaml.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T20:07:17.186Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-19T20:07:17.186Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "LoginPage.xaml.cs",
               "DocumentMoniker": "E:\\Github Code\\PROJEC_H\\MyShop\\MyShop\\Views\\LoginPage.xaml.cs",
               "RelativeDocumentMoniker": "MyShop\\Views\\LoginPage.xaml.cs",
@@ -72,12 +88,11 @@
               "RelativeToolTip": "MyShop\\Views\\LoginPage.xaml.cs",
               "ViewState": "AgIAABkAAAAAAAAAAAAgwC8AAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T20:05:53.793Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-19T20:05:53.793Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "IAuthService.cs",
               "DocumentMoniker": "E:\\Github Code\\PROJEC_H\\MyShop\\MyShop\\Services\\IAuthService.cs",
               "RelativeDocumentMoniker": "MyShop\\Services\\IAuthService.cs",
@@ -85,12 +100,11 @@
               "RelativeToolTip": "MyShop\\Services\\IAuthService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T20:05:47.037Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-19T20:05:47.037Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "DatabaseService.cs",
               "DocumentMoniker": "E:\\Github Code\\PROJEC_H\\MyShop\\MyShop\\Services\\DatabaseService.cs",
               "RelativeDocumentMoniker": "MyShop\\Services\\DatabaseService.cs",
@@ -98,12 +112,11 @@
               "RelativeToolTip": "MyShop\\Services\\DatabaseService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T19:57:54.866Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-19T19:57:54.866Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "AppConfig.cs",
               "DocumentMoniker": "E:\\Github Code\\PROJEC_H\\MyShop\\MyShop\\Models\\AppConfig.cs",
               "RelativeDocumentMoniker": "MyShop\\Models\\AppConfig.cs",

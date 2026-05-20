@@ -1,0 +1,83 @@
+-- ============================================================
+-- MyShop 2025 - Script khởi tạo Database PostgreSQL
+-- ============================================================
+-- CÁCH DÙNG:
+--   Bước 1: Chạy dòng CREATE DATABASE trước (kết nối đến
+--            database 'postgres' hoặc 'template1')
+--   Bước 2: Kết nối đến database 'myshop' rồi chạy phần còn lại
+--
+--   Hoặc dùng lệnh psql:
+--     psql -U postgres -c "CREATE DATABASE myshop;"
+--     psql -U postgres -d myshop -f database/init.sql
+-- ============================================================
+
+CREATE DATABASE myshop
+    WITH ENCODING 'UTF8'
+    LC_COLLATE = 'Vietnamese_Vietnam.1258'
+    LC_CTYPE = 'Vietnamese_Vietnam.1258';
+
+-- ============================================================
+-- BẢNG
+-- ============================================================
+
+-- Loại sản phẩm
+CREATE TABLE IF NOT EXISTS category (
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT DEFAULT ''
+);
+
+-- Sản phẩm
+CREATE TABLE IF NOT EXISTS product (
+    product_id SERIAL PRIMARY KEY,
+    sku VARCHAR(100) NOT NULL UNIQUE,
+    name VARCHAR(500) NOT NULL,
+    import_price INTEGER NOT NULL DEFAULT 0,
+    sale_price INTEGER NOT NULL DEFAULT 0,
+    count INTEGER NOT NULL DEFAULT 0,
+    description TEXT DEFAULT '',
+    category_id INTEGER REFERENCES category(category_id) ON DELETE SET NULL
+);
+
+-- Hình ảnh sản phẩm
+CREATE TABLE IF NOT EXISTS product_image (
+    image_id SERIAL PRIMARY KEY,
+    product_id INTEGER NOT NULL REFERENCES product(product_id) ON DELETE CASCADE,
+    image_url TEXT NOT NULL
+);
+
+-- Đơn hàng
+CREATE TABLE IF NOT EXISTS orders (
+    order_id SERIAL PRIMARY KEY,
+    created_time TIMESTAMP NOT NULL DEFAULT NOW(),
+    final_price INTEGER NOT NULL DEFAULT 0,
+    status VARCHAR(50) NOT NULL DEFAULT 'Mới tạo'
+);
+
+-- Chi tiết đơn hàng
+CREATE TABLE IF NOT EXISTS order_item (
+    order_item_id SERIAL PRIMARY KEY,
+    quantity INTEGER NOT NULL DEFAULT 1,
+    unit_sale_price DOUBLE PRECISION NOT NULL DEFAULT 0,
+    total_price INTEGER NOT NULL DEFAULT 0,
+    order_id INTEGER NOT NULL REFERENCES orders(order_id) ON DELETE CASCADE,
+    product_id INTEGER NOT NULL REFERENCES product(product_id) ON DELETE CASCADE
+);
+
+-- Người dùng
+CREATE TABLE IF NOT EXISTS app_user (
+    user_id SERIAL PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password_hash VARCHAR(500) NOT NULL,
+    role VARCHAR(50) NOT NULL DEFAULT 'admin'
+);
+
+-- ============================================================
+-- Tài khoản mặc định: admin / admin
+-- Hash SHA256 (lowercase hex) của 'admin'
+-- ============================================================
+INSERT INTO app_user (username, password_hash, role)
+VALUES ('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin')
+ON CONFLICT (username) DO NOTHING;
+
+-- ============================================================
