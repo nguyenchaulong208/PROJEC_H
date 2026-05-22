@@ -20,9 +20,9 @@ public sealed partial class LoginPage : Page
         _vm.LoadSavedCredentials();
 
         if (!string.IsNullOrEmpty(_vm.Username))
-            UsernameBox.Text = "admin";
+            UsernameBox.Text = _vm.Username;
         if (!string.IsNullOrEmpty(_vm.Password))
-            PasswordBox.Password = "admin";
+            PasswordBox.Password = _vm.Password;
         RememberCheck.IsChecked = _vm.RememberMe;
 
         _ = TryAutoLoginAsync();
