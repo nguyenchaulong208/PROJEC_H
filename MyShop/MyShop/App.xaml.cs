@@ -29,10 +29,17 @@ public partial class App : Application
         };
     }
 
-    protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
+    protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
     {
         ConfigService = new ConfigService();
         DatabaseService = new Services.DatabaseService(ConfigService);
+        try
+        {
+            await DatabaseService.InitializeDatabaseAsync();
+            await DatabaseService.SeedSampleDataAsync();
+        }
+        catch { }
+
         AuthService = new AuthService(DatabaseService);
         ProductService = new ProductService(DatabaseService);
         OrderService = new OrderService(DatabaseService);

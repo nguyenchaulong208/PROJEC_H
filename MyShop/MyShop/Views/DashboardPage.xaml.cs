@@ -32,7 +32,7 @@ public sealed partial class DashboardPage : Page
             LowStockList.ItemsSource = _vm.LowStockProducts.Select(p => new { p.Name, p.Count }).ToList();
             RecentOrdersList.ItemsSource = _vm.RecentOrders;
 
-            // chart temporarily disabled for diagnosis
+            // RenderChart(); // temporarily disabled - SkiaSharp native DLL issue
         }
         catch { }
     }

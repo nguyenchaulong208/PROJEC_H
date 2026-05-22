@@ -70,7 +70,7 @@ public partial class DashboardViewModel : BaseViewModel
             TodayRevenueText = $"{TodayRevenue:N0} đ";
             RecentOrders = await _orderService.GetRecentOrdersAsync(3);
 
-            // await LoadRevenueChartAsync(); // disabled for diagnosis
+            // await LoadRevenueChartAsync(); // disable temporarily - SkiaSharp native DLL issue
         }
         catch (Exception ex)
         {
